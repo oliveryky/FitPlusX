@@ -6,7 +6,7 @@
         android:title="Home" />
     <item
         android:id="@+id/nav_hike"
-        android:icon="@drawable/hike_black_24dp"
+        android:icon="@drawable/ic_hike_24px"
         android:title="Hikes" />
     <item
         android:id="@+id/nav_BMI"
@@ -14,7 +14,7 @@
         android:title="BMI" />
     <item
         android:id="@+id/nav_Pedometer"
-        android:icon="@drawable/ic_favorite_black_24dp"
+        android:icon="@drawable/ic_walk_24dp"
         android:title="Pedometer" />
     <item
         android:id="@+id/toolbarAvatar"
