@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cities_array">
+        <item>salt lake city </item>
+        <item> seattle </item>
+        <item> new york </item>
+        <item> austin </item>
+        <item> atlanta </item>
+        <item> los angeles </item>
+        <item> chicago </item>
+        <item> houston </item>
+        <item> phoenix </item>
+        <item> philadephia </item>
+    </string-array>
+</resources>
