@@ -3,6 +3,11 @@ package com.app.fitplusx.project.ViewFragment;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -27,6 +32,12 @@ public class ViewFragmentBMI extends Fragment {
     View v;
     ViewModelBMI mViewModelBMI;
 
+    private SensorManager mSensorManager;
+    private Sensor mRotationalSensor;
+    private boolean pedometerOn, mNotFirstTime;
+    private double last_z, now_z;
+    private final double mThreshold = 1.0;
+
     public ViewFragmentBMI() {
         // Required empty public constructor
     }
@@ -40,9 +51,17 @@ public class ViewFragmentBMI extends Fragment {
         mViewModelBMI.getUserTable().observe(this, nameObserver);
         mBMIRange = (TextView) v.findViewById(R.id.BMIRange);
 
+        // phone gesture stuff
+        mSensorManager = (SensorManager) v.getContext().getSystemService(Context.SENSOR_SERVICE);
+        mRotationalSensor = (Sensor)  mSensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
+        pedometerOn = false;
+
         return v;
     }
 
+    /**
+     * BMI changing function listener thing
+     */
     final Observer<UserDataTable> nameObserver  = new Observer<UserDataTable>() {
         @Override
         public void onChanged(@Nullable final UserDataTable userData) {
@@ -71,5 +90,61 @@ public class ViewFragmentBMI extends Fragment {
             }
         }
     };
+
+    /**
+     * Gesture code
+     */
+    private SensorEventListener mListener = new SensorEventListener() {
+
+
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent) {
+
+            // Get rotation about the y axis
+            now_z = sensorEvent.values[1];
+
+            if(mNotFirstTime){
+                double dy = Math.abs(last_z - now_z);
+
+                //Check if the values of acceleration have changed on any pair of axes
+                if(dy > mThreshold){
+
+                    // Start and Stop the pedometer here
+
+                    // REMOVE THIS CODE WHEN DONE TESTING!!!!!!!!!!!
+                    mBMIValue.setText(valueOf(dy));
+                    ////////////////////////////////////////////////
+
+
+                }
+            }
+            last_z = now_z;
+            mNotFirstTime = true;
+        }
+
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int i) {
+
+        }
+    };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(mRotationalSensor!=null){
+            mSensorManager.registerListener(mListener,mRotationalSensor,SensorManager.SENSOR_DELAY_NORMAL);
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(mRotationalSensor!=null){
+            mSensorManager.unregisterListener(mListener);
+        }
+    }
+
+    /*    End of Gesture Code      */
 
 }
