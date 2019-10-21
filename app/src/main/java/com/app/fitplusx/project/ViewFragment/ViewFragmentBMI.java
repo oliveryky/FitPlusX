@@ -23,9 +23,9 @@ import static java.lang.String.valueOf;
 
 
 public class ViewFragmentBMI extends Fragment {
-    TextView mBMIValue, mBMIRange;
-    View v;
-    ViewModelBMI mViewModelBMI;
+    private TextView mBMIValue, mBMIRange;
+    private View v;
+    private ViewModelBMI mViewModelBMI;
 
     public ViewFragmentBMI() {
         // Required empty public constructor

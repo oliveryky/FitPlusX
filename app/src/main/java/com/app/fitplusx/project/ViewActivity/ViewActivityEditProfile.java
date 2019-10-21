@@ -30,8 +30,8 @@ import com.app.fitplusx.project.R;
 import com.app.fitplusx.project.Repository.UserDataTable;
 import com.app.fitplusx.project.Utils;
 import com.app.fitplusx.project.ViewModel.ViewModelEditProfile;
-import com.app.fitplusx.project.ViewModel.ViewNavigationPhone;
-import com.app.fitplusx.project.ViewModel.ViewNavigationTablet;
+import com.app.fitplusx.project.ViewFragment.ViewNavigationPhone;
+import com.app.fitplusx.project.ViewFragment.ViewNavigationTablet;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

@@ -16,7 +16,7 @@ tools:context=".ViewActivity.ViewActivityUserProfile">
     app:layout_constraintBottom_toTopOf="@id/UserProfileBottomNav"/>
 
 <fragment
-    android:name="com.app.fitplusx.project.ViewModel.ViewNavigationPhone"
+    android:name="com.app.fitplusx.project.ViewFragment.ViewNavigationPhone"
     android:id="@+id/UserProfileBottomNav"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

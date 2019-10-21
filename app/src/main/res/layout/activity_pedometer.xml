@@ -5,19 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewActivity.ViewActivityBMI">
+    tools:context=".ViewActivity.ViewActivityPedometer">
 
     <fragment
-    android:name="com.app.fitplusx.project.ViewFragment.ViewFragmentBMI"
-    android:id="@+id/BMIview"
+    android:name="com.app.fitplusx.project.ViewFragment.ViewFragmentPedometer"
+    android:id="@+id/Pedometerview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/BMIBottomNav"/>
+    app:layout_constraintBottom_toTopOf="@id/PedometerBottomNav"/>
 
     <fragment
     android:name="com.app.fitplusx.project.ViewFragment.ViewNavigationPhone"
-    android:id="@+id/BMIBottomNav"
+    android:id="@+id/PedometerBottomNav"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_constraintBottom_toBottomOf="parent"/>

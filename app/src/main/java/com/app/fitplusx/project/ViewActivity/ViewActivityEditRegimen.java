@@ -19,8 +19,8 @@ import com.app.fitplusx.project.FitnessCalc;
 import com.app.fitplusx.project.R;
 import com.app.fitplusx.project.Repository.UserDataTable;
 import com.app.fitplusx.project.ViewModel.ViewModelEditRegimen;
-import com.app.fitplusx.project.ViewModel.ViewNavigationPhone;
-import com.app.fitplusx.project.ViewModel.ViewNavigationTablet;
+import com.app.fitplusx.project.ViewFragment.ViewNavigationPhone;
+import com.app.fitplusx.project.ViewFragment.ViewNavigationTablet;
 
 
 public class ViewActivityEditRegimen extends AppCompatActivity implements android.widget.CompoundButton.OnCheckedChangeListener,

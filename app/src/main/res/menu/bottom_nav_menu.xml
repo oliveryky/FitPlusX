@@ -3,17 +3,21 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="Home"/>
+        android:title="Home" />
     <item
         android:id="@+id/nav_hike"
         android:icon="@drawable/hike_black_24dp"
-        android:title="Hikes"/>
+        android:title="Hikes" />
     <item
-    android:id="@+id/nav_BMI"
-    android:icon="@drawable/ic_favorite_black_24dp"
-    android:title="BMI"/>
+        android:id="@+id/nav_BMI"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:title="BMI" />
+    <item
+        android:id="@+id/nav_Pedometer"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:title="Pedometer" />
     <item
         android:id="@+id/toolbarAvatar"
         android:icon="@drawable/ic_account_circle_black_24dp"
-        android:title="Profile"/>
+        android:title="Profile" />
 </menu>

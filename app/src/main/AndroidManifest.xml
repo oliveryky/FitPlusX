@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.fitplusx.project">
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,23 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.app.fitplusx.project.ViewActivity.ViewActivityWelcome">
+        <activity android:name=".ViewActivity.ViewActivityPedometer"></activity>
+        <activity android:name=".ViewActivity.ViewActivityWelcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.app.fitplusx.project.ViewActivity.ViewActivityBMI" />
-        <activity android:name="com.app.fitplusx.project.ViewActivity.ViewActivityEditRegimen" />
-        <activity android:name="com.app.fitplusx.project.ViewActivity.ViewActivityLogin" />
+        <activity android:name=".ViewActivity.ViewActivityBMI" />
+        <activity android:name=".ViewActivity.ViewActivityEditRegimen" />
+        <activity android:name=".ViewActivity.ViewActivityLogin" />
         <activity
-            android:name="com.app.fitplusx.project.ViewActivity.ViewActivityEditProfile"
+            android:name=".ViewActivity.ViewActivityEditProfile"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name="com.app.fitplusx.project.ViewActivity.ViewActivityUserProfile" />
-        <activity android:name="com.app.fitplusx.project.ViewActivity.ViewActivityDashboard" />
+        <activity android:name=".ViewActivity.ViewActivityUserProfile" />
+        <activity android:name=".ViewActivity.ViewActivityDashboard" />
     </application>
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 </manifest>
