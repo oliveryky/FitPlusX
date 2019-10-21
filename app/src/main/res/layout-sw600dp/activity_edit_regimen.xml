@@ -15,7 +15,7 @@
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <fragment
-        android:name="com.app.fitnessapp.project.ViewFragment.ViewFragmentEditRegimen"
+        android:name="com.app.fitplusx.project.ViewFragment.ViewFragmentEditRegimen"
         android:id="@+id/EditRegimenView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

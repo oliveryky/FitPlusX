@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.app.fitnessapp.project"
+        applicationId "com.app.fitplusx.project"
         minSdkVersion 28
         targetSdkVersion 28
         versionCode 1

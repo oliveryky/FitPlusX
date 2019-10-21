@@ -8,7 +8,7 @@ android:layout_height="match_parent"
 tools:context=".ViewActivity.ViewActivityUserProfile">
 
 <fragment
-    android:name="com.app.fitnessapp.project.ViewFragment.ViewFragmentUserProfile"
+    android:name="com.app.fitplusx.project.ViewFragment.ViewFragmentUserProfile"
     android:id="@+id/UserProfiveView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -16,7 +16,7 @@ tools:context=".ViewActivity.ViewActivityUserProfile">
     app:layout_constraintBottom_toTopOf="@id/UserProfileBottomNav"/>
 
 <fragment
-    android:name="com.app.fitnessapp.project.ViewModel.ViewNavigationPhone"
+    android:name="com.app.fitplusx.project.ViewModel.ViewNavigationPhone"
     android:id="@+id/UserProfileBottomNav"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

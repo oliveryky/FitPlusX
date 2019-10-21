@@ -8,7 +8,7 @@
     tools:context=".ViewActivity.ViewActivityEditProfile">
 
     <fragment
-        android:name="com.app.fitnessapp.project.ViewFragment.ViewFragmentLogin"
+        android:name="com.app.fitplusx.project.ViewFragment.ViewFragmentLogin"
         android:id="@+id/LoginView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

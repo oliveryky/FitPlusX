@@ -8,7 +8,7 @@
     tools:context=".ViewActivity.ViewActivityBMI">
 
     <fragment
-    android:name="com.app.fitnessapp.project.ViewFragment.ViewFragmentBMI"
+    android:name="com.app.fitplusx.project.ViewFragment.ViewFragmentBMI"
     android:id="@+id/BMIview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
     app:layout_constraintBottom_toTopOf="@id/BMIBottomNav"/>
 
     <fragment
-    android:name="com.app.fitnessapp.project.ViewModel.ViewNavigationPhone"
+    android:name="com.app.fitplusx.project.ViewModel.ViewNavigationPhone"
     android:id="@+id/BMIBottomNav"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
