@@ -1,3 +1,0 @@
-# FitnessApp
-
-### Setup
