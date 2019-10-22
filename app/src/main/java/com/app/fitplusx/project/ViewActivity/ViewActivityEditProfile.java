@@ -218,6 +218,7 @@ public class ViewActivityEditProfile extends AppCompatActivity implements DatePi
                     userDataTable.setSex(this.sexSpinner.getSelectedItem().toString());
 
                     vmEditProfile.updateUserData(userDataTable);
+                    vmEditProfile.updateUserDataS3(getApplicationContext(), userDataTable.getUserName());
                     //TODO: what about user image
 //                    Singleton.updateOrCreateJSON();
 

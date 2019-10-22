@@ -119,8 +119,9 @@ public class RepositoryUserData {
     }
 
     public void uploadUserDBToS3(final Context context, String userName) {
-        String KEY = "AKIA4NINVD7K4FJU774D";
-        String SECRET = "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";
+        // remobed keys for now because if I push to get Amazon and Git yell at me.
+        String KEY = "1234";
+        String SECRET = "1234";
         BasicAWSCredentials credentials = new BasicAWSCredentials(KEY,SECRET);
         AmazonS3Client s3Client = new AmazonS3Client(credentials);
 
@@ -133,7 +134,7 @@ public class RepositoryUserData {
 
         TransferObserver uploadObserver =
                 transferUtility.upload(
-                        "s3Folder/"+ userName +"/userData.db",
+                        "SQLite/"+ userName +"/userData.db",
                         new File("/data/data/com.app.fitplusx.project/databases/userData.db"));
 
         // Attach a listener to the observer to get state update and progress notifications
@@ -162,13 +163,6 @@ public class RepositoryUserData {
             }
 
         });
-
-        // If you prefer to poll for the data, instead of attaching a
-        // listener, check for the state and progress in the observer.
-        if (TransferState.COMPLETED == uploadObserver.getState()) {
-            // Handle a completed upload.
-        }
-
         Log.d("YourActivity", "Bytes Transferrred: " + uploadObserver.getBytesTransferred());
         Log.d("YourActivity", "Bytes Total: " + uploadObserver.getBytesTotal());
     }

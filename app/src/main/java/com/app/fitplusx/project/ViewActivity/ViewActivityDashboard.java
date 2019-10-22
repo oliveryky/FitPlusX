@@ -49,6 +49,7 @@ public class ViewActivityDashboard extends AppCompatActivity implements View.OnC
     // Required empty public constructor
     private LocationManager locationManager;
     private Location currentLocation;
+    private UserDataTable userDataTable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,7 +127,7 @@ public class ViewActivityDashboard extends AppCompatActivity implements View.OnC
         public void onChanged(@Nullable final UserDataTable userData) {
             // Update the UI if this data variable changes
             if(userData!=null) {
-
+                userDataTable = userData;
                 String tmp = userData.getDailyCaloricIntake() + " calories daily";
                 mDashboardCalorieText.setText(tmp);
 
@@ -267,6 +268,13 @@ public class ViewActivityDashboard extends AppCompatActivity implements View.OnC
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        if (userDataTable != null)
+            mViewModelDashboard.updateUserDataS3(getApplicationContext(), userDataTable.getUserName());
     }
 
 }
