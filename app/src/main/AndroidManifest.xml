@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewActivity.ViewActivityPedometer"></activity>
+        <activity android:name=".ViewActivity.ViewActivityPedometer"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <activity android:name=".ViewActivity.ViewActivityWelcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
