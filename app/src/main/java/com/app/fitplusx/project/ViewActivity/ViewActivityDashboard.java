@@ -1,43 +1,43 @@
 package com.app.fitplusx.project.ViewActivity;
 
-        import android.app.AlertDialog;
-        import android.arch.lifecycle.Observer;
-        import android.arch.lifecycle.ViewModelProviders;
-        import android.content.Context;
-        import android.content.DialogInterface;
-        import android.content.Intent;
-        import android.content.pm.PackageManager;
-        import android.location.Location;
-        import android.location.LocationListener;
-        import android.location.LocationManager;
-        import android.support.annotation.Nullable;
-        import android.support.v4.app.ActivityCompat;
-        import android.support.v4.content.ContextCompat;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.ImageView;
-        import android.widget.TextView;
+import android.app.AlertDialog;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-        import com.android.volley.Request;
-        import com.android.volley.RequestQueue;
-        import com.android.volley.Response;
-        import com.android.volley.VolleyError;
-        import com.android.volley.toolbox.JsonObjectRequest;
-        import com.android.volley.toolbox.Volley;
-        import com.app.fitplusx.project.R;
-        import com.app.fitplusx.project.Repository.UserDataTable;
-        import com.app.fitplusx.project.Utils;
-        import com.app.fitplusx.project.ViewModel.ViewModelDashboard;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.app.fitplusx.project.R;
+import com.app.fitplusx.project.Repository.UserDataTable;
+import com.app.fitplusx.project.Utils;
+import com.app.fitplusx.project.ViewModel.ViewModelDashboard;
 
-        import org.json.JSONException;
-        import org.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-        import java.text.DecimalFormat;
+import java.text.DecimalFormat;
 
-        import static android.location.LocationManager.GPS_PROVIDER;
-        import static android.location.LocationManager.NETWORK_PROVIDER;
+import static android.location.LocationManager.GPS_PROVIDER;
+import static android.location.LocationManager.NETWORK_PROVIDER;
 
 public class ViewActivityDashboard extends AppCompatActivity implements View.OnClickListener {
     private Button mChangeGoalButton;
