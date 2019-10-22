@@ -210,6 +210,7 @@ public class ViewActivityEditRegimen extends AppCompatActivity implements androi
                     intent.putExtra("complete", true);
                 }
                 mViewModelEditRegimen.updateUserData(userDataTable);
+                mViewModelEditRegimen.updateUserDataS3(getApplicationContext(), userDataTable.getUserName());
                 this.startActivity(intent);
                 break;
             default:

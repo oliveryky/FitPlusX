@@ -1,8 +1,17 @@
 package com.app.fitplusx.project.Repository;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.mobile.client.AWSMobileClient;
+import com.amazonaws.mobileconnectors.s3.transferutility.*;
+import com.amazonaws.services.s3.AmazonS3Client;
+
+import java.io.File;
 import java.util.List;
 
 public class RepositoryUserData {
@@ -107,5 +116,60 @@ public class RepositoryUserData {
             mSelectedUserDataSync = mAsyncTaskDao.getUserByUserName(strings[0]);
             return null;
         }
+    }
+
+    public void uploadUserDBToS3(final Context context, String userName) {
+        String KEY = "AKIA4NINVD7K4FJU774D";
+        String SECRET = "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";
+        BasicAWSCredentials credentials = new BasicAWSCredentials(KEY,SECRET);
+        AmazonS3Client s3Client = new AmazonS3Client(credentials);
+
+        TransferUtility transferUtility =
+                TransferUtility.builder()
+                        .context(context)
+                        .awsConfiguration(AWSMobileClient.getInstance().getConfiguration())
+                        .s3Client(s3Client)
+                        .build();
+
+        TransferObserver uploadObserver =
+                transferUtility.upload(
+                        "s3Folder/"+ userName +"/userData.db",
+                        new File("/data/data/com.app.fitplusx.project/databases/userData.db"));
+
+        // Attach a listener to the observer to get state update and progress notifications
+        uploadObserver.setTransferListener(new TransferListener() {
+
+            @Override
+            public void onStateChanged(int id, TransferState state) {
+                if (TransferState.COMPLETED == state) {
+                    // Handle a completed upload.
+                    Toast.makeText(context,"AWS S3 StateChanged",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+                float percentDonef = ((float) bytesCurrent / (float) bytesTotal) * 100;
+                int percentDone = (int)percentDonef;
+
+                Log.d("YourActivity", "ID:" + id + " bytesCurrent: " + bytesCurrent
+                        + " bytesTotal: " + bytesTotal + " " + percentDone + "%");
+            }
+
+            @Override
+            public void onError(int id, Exception ex) {
+                Toast.makeText(context,"AWS S3 ERROR",Toast.LENGTH_LONG).show();
+            }
+
+        });
+
+        // If you prefer to poll for the data, instead of attaching a
+        // listener, check for the state and progress in the observer.
+        if (TransferState.COMPLETED == uploadObserver.getState()) {
+            // Handle a completed upload.
+        }
+
+        Log.d("YourActivity", "Bytes Transferrred: " + uploadObserver.getBytesTransferred());
+        Log.d("YourActivity", "Bytes Total: " + uploadObserver.getBytesTotal());
     }
 }

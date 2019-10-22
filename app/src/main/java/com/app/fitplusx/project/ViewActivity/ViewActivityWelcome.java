@@ -4,8 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.app.fitplusx.project.R;
+import com.amazonaws.mobile.client.AWSMobileClient;
+import com.amazonaws.mobile.client.AWSStartupHandler;
+import com.amazonaws.mobile.client.AWSStartupResult;
+
 
 public class ViewActivityWelcome extends AppCompatActivity implements View.OnClickListener {
     // uncomment to populate db with "Marshal"
@@ -15,6 +20,14 @@ public class ViewActivityWelcome extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_welcome);
         findViewById(R.id.welcomeLoginButton).setOnClickListener(this);
         findViewById(R.id.welcomeSignUpButton).setOnClickListener(this);
+
+        AWSMobileClient.getInstance().initialize(this, new AWSStartupHandler() {
+            @Override
+            public void onComplete(AWSStartupResult awsStartupResult) {
+                Toast.makeText(getApplicationContext(),"AWSMobileClient is instantiated and you are connected to AWS!",Toast.LENGTH_SHORT).show();
+            }
+        }).execute();
+
     }
 
     @Override
