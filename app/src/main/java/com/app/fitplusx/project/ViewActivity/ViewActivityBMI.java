@@ -104,6 +104,7 @@ public class ViewActivityBMI extends AppCompatActivity {
 
                     // REMOVE THIS CODE WHEN DONE TESTING!!!!!!!!!!!
                     mBMIValue.setText(valueOf(dy));
+
                     ////////////////////////////////////////////////
 
 
