@@ -31,7 +31,7 @@ public class ViewActivityBMI extends AppCompatActivity {
     private Sensor mRotationalSensor;
     private boolean pedometerOn, mNotFirstTime;
     private double last_z, now_z;
-    private final double mThreshold = 1.0;
+    private final double mThreshold = 1.00;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
