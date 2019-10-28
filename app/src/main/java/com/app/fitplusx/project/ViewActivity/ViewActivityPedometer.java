@@ -56,6 +56,7 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
                     vmPedometer.updateUserDataS3(getApplicationContext(), userDataTable.getUserName());
                 }else {
                     counter = -1;
+                    pedometerValue.setText(0 + "");
                 }
                 return true;
             }
