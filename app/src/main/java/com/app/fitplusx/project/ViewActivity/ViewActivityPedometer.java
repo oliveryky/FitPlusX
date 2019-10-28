@@ -39,8 +39,6 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedometer);
-
-        //TODO: remove logic from here to onSensorChanged
         final GestureDetector gd = new GestureDetector(this.getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
 
 
@@ -130,52 +128,52 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        now_z = event.values[1];
-
-        if (firstTime) {
-            double dy = Math.abs(last_z - now_z);
-
-            //Check if the values of acceleration have changed on any pair of axes
-            if (dy > mThreshold) {
-
-                // Start and Stop the pedometer here
-
-                // REMOVE THIS CODE WHEN DONE TESTING!!!!!!!!!!!
-                pedometerValue.setText(valueOf(dy));
-                showToast("Pedometer is ON");
-                Toast.makeText(this, "AHHHHHHHHHHHH", Toast.LENGTH_LONG).show();
-                running = true;
-                ////////////////////////////////////////////////
-
-
-            }
-        }
-        last_z = now_z;
-        firstTime = true;
-        if (event.sensor.getType() == Sensor.TYPE_GAME_ROTATION_VECTOR) {
-            now_z = event.values[1];
-
-            if (firstTime) {
-                double dy = Math.abs(last_z - now_z);
-
-                //Check if the values of acceleration have changed on any pair of axes
-                if (dy > mThreshold) {
-
-                    // Start and Stop the pedometer here
-
-                    // REMOVE THIS CODE WHEN DONE TESTING!!!!!!!!!!!
-                    pedometerValue.setText(valueOf(dy));
-                    showToast("Pedometer is ON");
-                    Toast.makeText(this, "AHHHHHHHHHHHH", Toast.LENGTH_LONG).show();
-                    running = true;
-                    ////////////////////////////////////////////////
-
-
-                }
-            }
-            last_z = now_z;
-            firstTime = true;
-        }
+//        now_z = event.values[1];
+//
+//        if (firstTime) {
+//            double dy = Math.abs(last_z - now_z);
+//
+//            //Check if the values of acceleration have changed on any pair of axes
+//            if (dy > mThreshold) {
+//
+//                // Start and Stop the pedometer here
+//
+//                // REMOVE THIS CODE WHEN DONE TESTING!!!!!!!!!!!
+//                pedometerValue.setText(valueOf(dy));
+//                showToast("Pedometer is ON");
+//                Toast.makeText(this, "AHHHHHHHHHHHH", Toast.LENGTH_LONG).show();
+//                running = true;
+//                ////////////////////////////////////////////////
+//
+//
+//            }
+//        }
+//        last_z = now_z;
+//        firstTime = true;
+//        if (event.sensor.getType() == Sensor.TYPE_GAME_ROTATION_VECTOR) {
+//            now_z = event.values[1];
+//
+//            if (firstTime) {
+//                double dy = Math.abs(last_z - now_z);
+//
+//                //Check if the values of acceleration have changed on any pair of axes
+//                if (dy > mThreshold) {
+//
+//                    // Start and Stop the pedometer here
+//
+//                    // REMOVE THIS CODE WHEN DONE TESTING!!!!!!!!!!!
+//                    pedometerValue.setText(valueOf(dy));
+//                    showToast("Pedometer is ON");
+//                    Toast.makeText(this, "AHHHHHHHHHHHH", Toast.LENGTH_LONG).show();
+//                    running = true;
+//                    ////////////////////////////////////////////////
+//
+//
+//                }
+//            }
+//            last_z = now_z;
+//            firstTime = true;
+//        }
 
         if (running) {
             if (counter == -1) {
