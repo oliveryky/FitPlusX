@@ -148,7 +148,7 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
 
                         if (!running) {
                             running = true;
-                            pedometerValue.setText(valueOf(dy));
+//                            pedometerValue.setText(valueOf(dy));
                             showToast("Pedometer is ON");
                         } else {
                             running = false;
@@ -165,7 +165,8 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
             if (counter == -1) {
                 counter = (long) event.values[0];
             }
-            pedometerValue.setText(((long) event.values[0] - counter) + "");
+            String value = ((long) event.values[0] - counter) + "";
+            pedometerValue.setText(value);
         }
     }
 
