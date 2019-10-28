@@ -30,6 +30,7 @@ public class UserDataTable {
     private double goal;
     private int dailyCaloricIntake;
     private int age;
+    private int step;
 
     @Ignore
     public UserDataTable() {
@@ -46,6 +47,7 @@ public class UserDataTable {
         this.activityLevel = 0;
         this.goal = 0;
         this.dailyCaloricIntake = 0;
+        this.step = 0;
     }
 
     public UserDataTable(@NonNull String userName, @NonNull String password) {
@@ -58,7 +60,7 @@ public class UserDataTable {
     @Ignore
     public UserDataTable(@NonNull String birthday, String sex, String location, String imageUri, String password,
                          double height, double weight, double activityLevel, double goal,
-                         int dailyCaloricIntake, int age, String userName, String name) {
+                         int dailyCaloricIntake, int age, String userName, String name, int step) {
         this.birthday = birthday;
         this.sex = sex;
         this.location = location;
@@ -72,6 +74,7 @@ public class UserDataTable {
         this.userName = userName;
         this.name = name;
         this.password = password;
+        this.step = step;
     }
 
 
@@ -174,4 +177,8 @@ public class UserDataTable {
     public void setUserName(@NonNull String userName) {
         this.userName = userName;
     }
+
+    public int getStep() { return step;}
+
+    public void setStep(int step) {this.step = step;}
 }
