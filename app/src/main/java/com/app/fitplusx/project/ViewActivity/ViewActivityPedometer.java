@@ -29,6 +29,7 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
     private UserDataTable userDataTable;
     private TextView pedometerValue;
     private long counter = -1;
+    private int steps = 0;
 
     private SensorManager sensorManager;
     private Sensor stepSensor, gestureSensor;
@@ -49,7 +50,13 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
             public boolean onDoubleTap(MotionEvent e) {
                 showToast("Pedometer is " + (running ? "OFF" : "ON"));
                 running = !running;
-                if(!running) counter = -1;
+                if(!running){
+                    userDataTable.setStep(steps);
+                    vmPedometer.updateUserData(userDataTable);
+                    vmPedometer.updateUserDataS3(getApplicationContext(), userDataTable.getUserName());
+                }else {
+                    counter = -1;
+                }
                 return true;
             }
 
@@ -100,14 +107,14 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
 
             if (userData != null) {
                 userDataTable = userData;
-//                pedometerValue.setText(0);
+                pedometerValue.setText(userData.getStep() + "" );
 
             }
         }
     };
 
     private void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
     @Override
     protected void onResume() {
@@ -119,6 +126,16 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         if (stepSensor != null) {
             sensorManager.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_UI);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(running) {
+            userDataTable.setStep(steps);
+            vmPedometer.updateUserData(userDataTable);
+            vmPedometer.updateUserDataS3(getApplicationContext(), userDataTable.getUserName());
         }
     }
 
@@ -179,7 +196,8 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
             if (counter == -1) {
                 counter = (long) event.values[0];
             }
-            pedometerValue.setText(((long) event.values[0] - counter) + "");
+            steps = (int) event.values[0] - (int) counter;
+            pedometerValue.setText(steps + "");
         }
     }
 
