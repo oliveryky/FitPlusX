@@ -24,6 +24,4 @@ public interface UserDataDao {
 
     @Query("SELECT * from user_data_table WHERE userName == :userName")
     LiveData<UserDataTable> getUserByUserName(String userName);
-
-    // TODO: method to update a user's information
 }
