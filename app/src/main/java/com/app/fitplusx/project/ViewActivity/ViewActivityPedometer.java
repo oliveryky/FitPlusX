@@ -46,38 +46,6 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedometer);
 
-        //TODO: remove logic from here to onSensorChanged
-//        final GestureDetector gd = new GestureDetector(this.getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
-//
-//
-//            //here is the method for double tap
-//            @Override
-//            public boolean onDoubleTap(MotionEvent e) {
-//                showToast("Pedometer is " + (running ? "OFF" : "ON"));
-//                running = !running;
-//                if(!running) counter = -1;
-//                return true;
-//            }
-//
-//            @Override
-//            public void onLongPress(MotionEvent e) {
-//                super.onLongPress(e);
-//
-//            }
-//
-//            @Override
-//            public boolean onDoubleTapEvent(MotionEvent e) {
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onDown(MotionEvent e) {
-//                return true;
-//            }
-//
-//
-//        });
-
         //Create the view model
         vmPedometer = ViewModelProviders.of(this).get(ViewModelPedometer.class);
 
@@ -86,14 +54,7 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
         pedometerValue = findViewById(R.id.PedometerValue);
         pedometerValue.setText("0");
 
-//        pedometerValue.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//
-//                return gd.onTouchEvent(event);
-//            }
-//        });
-
+        // setup sensor stuff
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         gestureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
@@ -117,6 +78,8 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
     private void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
+
+    // re-register the sensors
     @Override
     protected void onResume() {
         super.onResume();
@@ -128,6 +91,13 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
         if (stepSensor != null) {
             sensorManager.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_UI);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (stepSensor != null) sensorManager.unregisterListener(this, stepSensor);
+        if(gestureSensor != null) sensorManager.unregisterListener(this, gestureSensor);
     }
 
 
