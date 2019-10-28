@@ -1,12 +1,12 @@
 package com.app.fitplusx.project;
 
-import com.app.fitplusx.project.ViewActivity.ViewActivityWelcome;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
+
+import com.app.fitplusx.project.ViewActivity.ViewActivityWelcome;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;

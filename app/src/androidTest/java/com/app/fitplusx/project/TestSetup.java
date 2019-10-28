@@ -2,8 +2,6 @@ package com.app.fitplusx.project;
 
 import android.widget.DatePicker;
 
-import com.app.fitplusx.project.ViewActivity.ViewActivityWelcome;
-
 import org.hamcrest.Matchers;
 import org.junit.Rule;
 import org.junit.Test;
@@ -13,6 +11,8 @@ import androidx.test.espresso.Espresso;
 import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
+
+import com.app.fitplusx.project.ViewActivity.ViewActivityWelcome;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;

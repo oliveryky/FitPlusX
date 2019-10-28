@@ -119,9 +119,9 @@ public class RepositoryUserData {
     }
 
     public void uploadUserDBToS3(final Context context, String userName) {
-        // remobed keys for now because if I push to get Amazon and Git yell at me.
-        String KEY = "1234";
-        String SECRET = "1234";
+        // remember keys for now because if I push to get Amazon and Git yell at me.
+        String KEY = "_";
+        String SECRET = "_";
         BasicAWSCredentials credentials = new BasicAWSCredentials(KEY,SECRET);
         AmazonS3Client s3Client = new AmazonS3Client(credentials);
 

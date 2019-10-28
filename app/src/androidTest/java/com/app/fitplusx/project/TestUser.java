@@ -7,7 +7,7 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
 public class TestUser {
-    public static final String userName = "zz",
+    public static final String userName = "rrr",
             pw = "asdf",
             name = "Namer",
             height = "6'1",

@@ -1,7 +1,5 @@
 package com.app.fitplusx.project;
 
-import com.app.fitplusx.project.ViewActivity.ViewActivityWelcome;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +15,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
+
+import com.app.fitplusx.project.ViewActivity.ViewActivityWelcome;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.core.AllOf.allOf;
