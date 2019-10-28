@@ -40,39 +40,34 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedometer);
 
-        //TODO: remove logic from here to onSensorChanged
-        final GestureDetector gd = new GestureDetector(this.getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
+//        final GestureDetector gd = new GestureDetector(this.getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
+//
+//            //here is the method for double tap
+//            @Override
+//            public boolean onDoubleTap(MotionEvent e) {
+//                showToast("Pedometer is " + (running ? "OFF" : "ON"));
+//                running = !running;
+//                if(!running) counter = -1;
+//                return true;
+//            }
+//
+//            @Override
+//            public void onLongPress(MotionEvent e) {
+//                super.onLongPress(e);
+//
+//            }
+//
+//            @Override
+//            public boolean onDoubleTapEvent(MotionEvent e) {
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onDown(MotionEvent e) {
+//                return true;
+//            }
 
-
-            //here is the method for double tap
-
-
-            @Override
-            public boolean onDoubleTap(MotionEvent e) {
-                showToast("Pedometer is " + (running ? "OFF" : "ON"));
-                running = !running;
-                if(!running) counter = -1;
-                return true;
-            }
-
-            @Override
-            public void onLongPress(MotionEvent e) {
-                super.onLongPress(e);
-
-            }
-
-            @Override
-            public boolean onDoubleTapEvent(MotionEvent e) {
-                return true;
-            }
-
-            @Override
-            public boolean onDown(MotionEvent e) {
-                return true;
-            }
-
-
-        });
+//        });
 
         //Create the view model
         vmPedometer = ViewModelProviders.of(this).get(ViewModelPedometer.class);
@@ -81,17 +76,17 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
         (vmPedometer.getUserTable()).observe(this, stepObserver);
         pedometerValue = findViewById(R.id.PedometerValue);
         pedometerValue.setText("0");
-        pedometerValue.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                return gd.onTouchEvent(event);
-            }
-        });
+//        pedometerValue.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//
+//                return gd.onTouchEvent(event);
+//            }
+//        });
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        gestureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
+        gestureSensor = (Sensor) sensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
     }
 
     //create an observer that watches the LiveData<WeatherData> object
@@ -99,7 +94,6 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
         @Override
         public void onChanged(@Nullable final UserDataTable userData) {
             // Update the UI if this data variable changes
-
             if (userData != null) {
                 userDataTable = userData;
 //                pedometerValue.setText(0);
@@ -111,51 +105,29 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
     private void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
+
     @Override
     protected void onResume() {
         super.onResume();
-//        gestureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
-//        if (gestureSensor != null) {
-//            sensorManager.registerListener(this, gestureSensor, SensorManager.SENSOR_DELAY_UI);
-//        }
+        gestureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
+        if (gestureSensor != null) {
+            sensorManager.registerListener(this, gestureSensor, SensorManager.SENSOR_DELAY_UI);
+        }
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         if (stepSensor != null) {
             sensorManager.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_UI);
         }
     }
 
-    private boolean firstTime;
+    private boolean firstTime = true;
     private double last_z, now_z;
-    private final double mThreshold = 1.0;
+    private final double mThreshold = 0.5;
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        now_z = event.values[1];
-
-        if (firstTime) {
-            double dy = Math.abs(last_z - now_z);
-
-            //Check if the values of acceleration have changed on any pair of axes
-            if (dy > mThreshold) {
-
-                // Start and Stop the pedometer here
-
-                // REMOVE THIS CODE WHEN DONE TESTING!!!!!!!!!!!
-                pedometerValue.setText(valueOf(dy));
-                showToast("Pedometer is ON");
-                Toast.makeText(this, "AHHHHHHHHHHHH", Toast.LENGTH_LONG).show();
-                running = true;
-                ////////////////////////////////////////////////
-
-
-            }
-        }
-        last_z = now_z;
-        firstTime = true;
         if (event.sensor.getType() == Sensor.TYPE_GAME_ROTATION_VECTOR) {
             now_z = event.values[1];
-
-            if (firstTime) {
+            if (!firstTime) {
                 double dy = Math.abs(last_z - now_z);
 
                 //Check if the values of acceleration have changed on any pair of axes
@@ -165,16 +137,15 @@ public class ViewActivityPedometer extends AppCompatActivity implements SensorEv
 
                     // REMOVE THIS CODE WHEN DONE TESTING!!!!!!!!!!!
                     pedometerValue.setText(valueOf(dy));
-                    showToast("Pedometer is ON");
+//                showToast("Pedometer is ON");
                     Toast.makeText(this, "AHHHHHHHHHHHH", Toast.LENGTH_LONG).show();
                     running = true;
                     ////////////////////////////////////////////////
 
-
                 }
             }
             last_z = now_z;
-            firstTime = true;
+            firstTime = false;
         }
 
         if (running) {
