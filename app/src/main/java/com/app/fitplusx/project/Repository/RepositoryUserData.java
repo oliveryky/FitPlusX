@@ -120,6 +120,7 @@ public class RepositoryUserData {
 
     public void uploadUserDBToS3(final Context context, String userName) {
         // remember keys for now because if I push to get Amazon and Git yell at me.
+        String file = context.getDatabasePath("userData.db").getAbsolutePath();
         String KEY = "_";
         String SECRET = "_";
         BasicAWSCredentials credentials = new BasicAWSCredentials(KEY,SECRET);
@@ -135,7 +136,8 @@ public class RepositoryUserData {
         TransferObserver uploadObserver =
                 transferUtility.upload(
                         "SQLite/"+ userName +"/userData.db",
-                        new File("/data/data/com.app.fitplusx.project/databases/userData.db"));
+                        new File(file));
+
 
         // Attach a listener to the observer to get state update and progress notifications
         uploadObserver.setTransferListener(new TransferListener() {
