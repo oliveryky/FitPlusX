@@ -9,7 +9,7 @@
     <fragment
         android:name="com.app.fitplusx.project.ViewFragment.ViewNavigationTablet"
         android:id="@+id/PedometerNav"
-        android:layout_width="150dp"
+        android:layout_width="@dimen/nav_dimension"
         android:layout_height="match_parent"
         android:layout_column="0"
         android:layout_columnWeight="0"/>

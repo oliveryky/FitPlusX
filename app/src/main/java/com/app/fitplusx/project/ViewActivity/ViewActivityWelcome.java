@@ -24,7 +24,7 @@ public class ViewActivityWelcome extends AppCompatActivity implements View.OnCli
         AWSMobileClient.getInstance().initialize(this, new AWSStartupHandler() {
             @Override
             public void onComplete(AWSStartupResult awsStartupResult) {
-                Toast.makeText(getApplicationContext(),"AWSMobileClient is instantiated and you are connected to AWS!",Toast.LENGTH_SHORT).show();
+
             }
         }).execute();
 

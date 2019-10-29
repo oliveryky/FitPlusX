@@ -45,7 +45,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:textSize="24sp"
-            android:text="To the greatest app in the world. Tribute."/>
+            android:text="To FitPlusX"/>
 
         <Button
             style="@style/ButtonStyle"

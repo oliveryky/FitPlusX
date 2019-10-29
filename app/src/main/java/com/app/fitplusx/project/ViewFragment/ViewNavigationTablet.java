@@ -32,15 +32,15 @@ public class ViewNavigationTablet extends Fragment implements NavigationView.OnN
     private int getMenuIndex() {
         String activityName = getActivity().getLocalClassName();
         switch(activityName){
-            case "ViewActivityDashboard":
+            case "ViewActivity.ViewActivityDashboard":
                 return 0;
             case "findHike":
                 return 1;
-            case "ViewActivityBMI":
+            case "ViewActivity.ViewActivityBMI":
                 return 2;
-            case "ViewActivityUserProfile":
+            case "ViewActivity.ViewActivityPedometer":
                 return 3;
-            case "ViewActivityPedometer":
+            case "ViewActivity.ViewActivityUserProfile":
                 return 4;
         }
         return -1;
