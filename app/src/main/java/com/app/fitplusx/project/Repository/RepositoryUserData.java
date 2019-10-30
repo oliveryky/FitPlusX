@@ -146,7 +146,7 @@ public class RepositoryUserData {
             public void onStateChanged(int id, TransferState state) {
                 if (TransferState.COMPLETED == state) {
                     // Handle a completed upload.
-                    Toast.makeText(context,"AWS S3 StateChanged",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(context,"AWS S3 StateChanged",Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -161,7 +161,7 @@ public class RepositoryUserData {
 
             @Override
             public void onError(int id, Exception ex) {
-                Toast.makeText(context,"AWS S3 ERROR",Toast.LENGTH_LONG).show();
+                //(context,"AWS S3 ERROR",Toast.LENGTH_LONG).show();
             }
 
         });
